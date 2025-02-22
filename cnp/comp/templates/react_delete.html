@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete DNS Data{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <h1>Delete DNS Data</h1>
+    
+    <!-- Full-Width Table with Separated Rows and Columns -->
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Domain Name</th>
+                <th>IP Address</th>
+                <th>Class</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="domain">{{ react.DomainName }}</td>
+                <td class="ip-address">{{ react.IPAddress }}</td>
+                <td class="class">{{ react.Class }}</td>
+                <td>
+                    <form method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        color: white;
+    }
+
+    .delete-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px auto;
+        width: 100%; /* Adjusted for better alignment */
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    /* Table Styles */
+    .data-table {
+        width: 100%; /* Full width */
+        margin-top: 10px;
+        border-collapse: separate;
+        border-spacing: 0; /* Removes gaps between cells */
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        overflow: hidden;
+        color: #fff;
+        text-align: left;
+    }
+
+    .data-table thead th {
+        padding: 12px;
+        background-color: #4CAF50; /* Header background color */
+        color: white;
+        font-weight: bold;
+        border: 1px solid #ddd; /* Add borders to the header */
+    }
+
+    .data-table tbody td {
+        padding: 8px;
+        border: 1px solid #ddd; /* Add borders to the table cells */
+    }
+
+   
+
+    /* Button Styles */
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+        margin-right: 5px;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+
+    .btn-primary {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #45a049;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .data-table {
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+    }
+</style>
+{% endblock %}

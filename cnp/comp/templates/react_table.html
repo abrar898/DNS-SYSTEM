@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS SYSTEM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: linear-gradient(to right, #00c6ff, #0072ff); /* Beautiful gradient background */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+       
+        .delete-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Make the table responsive */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+            }
+
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            td {
+                font-size: 12px;
+            }
+
+            .delete-button {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+        }
+
+        /* Link styling */
+        a.primary-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a.primary-link:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+{% comment %} <h1> Model Data</h1> {% endcomment %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Domain Name</th>
+            <th>IP Address</th>
+            <th>Class</th>
+            <th>Action</th> <!-- New Action column -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for react in react_objects %}
+        <tr>
+            <td>{{ react.DomainName }}</td>
+            <td>{{ react.IPAddress }}</td>
+            <td>{{ react.Class }}</td>
+            <td>
+                <a href="{% url 'react-delete' react.id %}" class="delete-button" aria-label="Delete {{ react.DomainName }}">Delete</a>
+            </td> <!-- Delete button added -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Search Results</h1>
+
+    {% if search_query %}
+        <h2>Showing results for: "{{ search_query }}"</h2>
+    {% endif %}
+
+    {% if results %}
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Domain Name</th>
+                    <th>IP Address</th>
+                    <th>Class</th>
+                    <th>Action</th> <!-- New column for delete action -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.DomainName }}</td>
+                        <td>{{ result.IPAddress }}</td>
+                        <td>{{ result.Class }}</td>
+                        <td>
+                            <!-- Delete Button -->
+                            <form method="POST" action="{% url 'home' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>No results found for "{{ search_query }}"</h2>
+    {% endif %}
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background: linear-gradient(to right, #00c6ff, #0072ff); /* Beautiful gradient background */
+    }
+
+    .container {
+        margin: 10px auto;
+        width: 100%;  /* Ensure the container is full-width */
+    }
+
+    .results-table {
+        width: 100%; /* Ensure table takes full width */
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .results-table th, .results-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .results-table th {
+        color: white;
+        background-color: #4CAF50;
+    }
+
+    .results-table button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .results-table button:hover {
+        background-color: darkred;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .results-table {
+            font-size: 14px;
+        }
+
+        .results-table th, .results-table td {
+            padding: 8px;
+        }
+    }
+
+</style>
+
+{% endblock %}

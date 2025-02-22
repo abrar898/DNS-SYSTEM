@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DNS SYSTEM{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6OF+4dzk5DyU6UVEFvPZ8K6fqE5w8FN3Hfw5c6tmM6vdtz2en3cTtTR3lnFz5Lb66tQzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Navbar styling */
+        nav {
+           
+            background-color: #007bff; /* Blue color */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            justify-content:space-between;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0056b3; /* Darker blue for hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a.active {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        .d-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+            background-color: white;
+            color: #007bff;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav .logo {
+                margin-bottom: 10px;
+            }
+
+            nav div {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .form-control {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">DNS</div>
+        <div>
+            <a href="{% url 'react-table' %}" >Display</a>
+            <a href="{% url 'react-form' %}">Create</a>
+            
+            <form class="d-flex" role="search" method="POST" action="{% url 'search-results' %}">
+                {% csrf_token %}
+                <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search for something"
+                    name="search_query"
+                    required
+                    aria-label="Search"
+                >
+                <button 
+                    class="btn" 
+                    type="submit">
+                    Search
+                </button>
+            </form>         
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

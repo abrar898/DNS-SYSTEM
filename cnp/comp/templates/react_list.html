@@ -1,0 +1,46 @@
+<!-- templates/react_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>React Model Data</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Domain Name</th>
+            <th>IP Address</th>
+            <th>Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for react in react_objects %}
+        <tr>
+            <td>{{ react.DomainName }}</td>
+            <td>{{ react.IPAddress }}</td>
+            <td>{{ react.Class }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
